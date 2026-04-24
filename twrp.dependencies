@@ -1,0 +1,6 @@
+# TWRP device dependencies
+# Format: repository_path branch
+#
+# Add your device dependencies here if needed
+# Example:
+# device/asus/sm8250-common android-12.1
