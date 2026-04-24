@@ -4,10 +4,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-LOCAL_PATH := $(call my-dir)
 DEVICE_PATH := device/zte/P865A02
 TARGET_DEVICE := P865A02
 ALLOW_MISSING_DEPENDENCIES := true
+BOARD_USES_GENERIC_KERNEL_IMAGE := true
+BOARD_EXCLUDE_KERNEL_FROM_RECOVERY_IMAGE := true
 
 # A/B
 AB_OTA_UPDATER := true
@@ -58,26 +59,25 @@ TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
 TW_MAX_BRIGHTNESS := 2047
 TW_DEFAULT_BRIGHTNESS := 1023
 
-# Kernel
+# Kernel - 使用预编译内核
 BOARD_BOOTIMG_HEADER_VERSION := 2
 BOARD_KERNEL_BASE := 0x00080000
 BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0xa90000 androidboot.hardware=qcom androidboot.console=ttyMSM0 androidboot.memcg=1 lpm_levels.sleep_disabled=1 video=vfb:640x400,bpp=32,memsize=3072000 msm_rtb.filter=0x237 service_locator.enable=1 androidboot.usbcontroller=a600000.dwc3 swiotlb=2048 loop.max_part=7 cgroup.memory=nokmem,nosocket reboot=panic_warm buildvariant=user
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
+BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_KERNEL_SEPARATED_DTBO := true
+
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
+TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/dtb.img
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
-BOARD_KERNEL_IMAGE_NAME := Image
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
-BOARD_KERNEL_SEPARATED_DTBO := true
-
-# Prebuilt Kernel
-TARGET_FORCE_PREBUILT_KERNEL := true
-TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
-TARGET_PREBUILT_DTB := $(LOCAL_PATH)/prebuilt/dtb.img
 BOARD_MKBOOTIMG_ARGS += --dtb $(TARGET_PREBUILT_DTB)
-BOARD_PREBUILT_DTBOIMAGE := $(LOCAL_PATH)/prebuilt/dtbo.img
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
+
+TARGET_USE_CUSTOM_KERNEL := true
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144
