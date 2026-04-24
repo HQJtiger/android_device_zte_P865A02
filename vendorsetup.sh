@@ -5,10 +5,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_P865A02.mk
-
-COMMON_LUNCH_CHOICES := \
-    omni_P865A02-user \
-    omni_P865A02-userdebug \
-    omni_P865A02-eng
+add_lunch_combo omni_P865A02-user
+add_lunch_combo omni_P865A02-userdebug
+add_lunch_combo omni_P865A02-eng

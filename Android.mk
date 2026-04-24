@@ -5,10 +5,8 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_P865A02.mk
+LOCAL_PATH := $(call my-dir)
 
-COMMON_LUNCH_CHOICES := \
-    omni_P865A02-user \
-    omni_P865A02-userdebug \
-    omni_P865A02-eng
+ifeq ($(TARGET_DEVICE),P865A02)
+include $(call all-subdir-makefiles,$(LOCAL_PATH))
+endif
