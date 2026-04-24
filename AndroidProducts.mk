@@ -6,9 +6,9 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_P865A02.mk
+    $(LOCAL_DIR)/twrp_P865A02.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_P865A02-user \
-    omni_P865A02-userdebug \
-    omni_P865A02-eng
+    twrp_P865A02-eng \
+    twrp_P865A02-userdebug \
+    twrp_P865A02-user
